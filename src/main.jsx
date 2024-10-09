@@ -3,6 +3,7 @@ import App from './App.jsx'
 import './index.css'
 import {mode} from '@chakra-ui/theme-tools'
 import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react'
+import { BrowserRouter } from 'react-router-dom'
 
 const styles = {
     global: (props) => ({
@@ -30,8 +31,10 @@ const theme = extendTheme({configs, styles, colors})
 createRoot(document.getElementById('root')).render(
     <>
         <ChakraProvider theme={theme}>
-            <ColorModeScript initialColorMode={theme.configs.initialColorMode}/>
-            <App />
+            <BrowserRouter>
+                <ColorModeScript initialColorMode={theme.configs.initialColorMode}/>
+                <App />
+            </BrowserRouter>
         </ChakraProvider>
     </>
 )

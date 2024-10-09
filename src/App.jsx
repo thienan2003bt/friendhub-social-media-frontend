@@ -1,11 +1,12 @@
-import { Button, Container } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import './App.css'
+import Header from './components/common/Header/Header'
 
 function App() {
 
   return (
-    <Container>
-        <Button>Hello World!</Button>
+    <Container w={"100vw"}>
+		<Header />
     </Container>
   )
 }
