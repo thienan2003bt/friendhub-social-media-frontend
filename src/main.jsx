@@ -10,6 +10,7 @@ const styles = {
         body: {
             color: mode("gray.800", "whiteAlpha.900")(props),
             bg: mode("gray.100", "#18191A")(props),
+            margin: "0",
         }
     })
 }
@@ -30,7 +31,7 @@ const theme = extendTheme({configs, styles, colors})
 
 createRoot(document.getElementById('root')).render(
     <>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider theme={theme} margin={0}>
             <BrowserRouter>
                 <ColorModeScript initialColorMode={theme.configs.initialColorMode}/>
                 <App />

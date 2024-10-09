@@ -66,3 +66,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.css-ft8ynr {
+  width: 100vw !important;
+  margin: 0 !important;
+}
