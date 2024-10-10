@@ -6,6 +6,7 @@ function HomeRightMenu() {
     const [onlineFriends, setOnlineFriends] = useState([]);
     const [groupChats, setGroupChats] = useState([]);
 
+
     useEffect(() => {
         setOnlineFriends([
             {fullname: "Lee Chong Wei", avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg"},
@@ -30,10 +31,10 @@ function HomeRightMenu() {
     }, []);
 
     return (
-        <Flex top={"75px"} height={"90vh"} w={"20vw"} position={"fixed"} right={"16px"} 
-            overflowY={"auto"} my={1} flexDirection={"column"}
+        <Flex id="app-right-side-menu" top={"75px"} height={"90vh"} w={"20vw"} position={"fixed"} right={"16px"} 
+            overflowY={"scroll"} my={1} flexDirection={"column"}
         >
-            <Flex w={"full"} className="online-users-menu" flexDirection={"column"} flex={50}>
+            <Flex w={"full"} className="online-users-menu" flexDirection={"column"} flex={50} pr={2}>
                 <Flex justifyContent={"space-between"} w={"full"}>
                     <Text fontSize={"16px"} fontStyle={"italic"}>Online Friends</Text>
                     <Link to={"/friends/edit"}>Edit</Link>
@@ -63,7 +64,7 @@ function HomeRightMenu() {
 
             <Divider size={4} my={3}/>
 
-            <Flex w={"full"} className="online-users-menu" flexDirection={"column"} flex={50}>
+            <Flex w={"full"} className="online-users-menu" flexDirection={"column"} flex={50} pr={2}>
             <Flex justifyContent={"space-between"} w={"full"}>
                     <Text fontSize={"16px"} fontStyle={"italic"}>Group chats</Text>
                     <Link to={"/friends/edit"}>Edit</Link>
