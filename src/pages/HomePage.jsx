@@ -6,20 +6,40 @@ import { BiSolidVideoRecording, BiSolidVideos } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { ImProfile } from 'react-icons/im';
 import { FaBusinessTime } from 'react-icons/fa';
+import MultiElementCarousel from '../components/common/Carousel/MultiElementCarousel';
+import { useEffect, useState } from 'react';
 
 function HomePage() {
-
+    const STORIES_PER_TIME = 5;
     const navigate = useNavigate();
+    const [stories, setStories] = useState([]);
 
+    useEffect(() => {
+        const fetchStories = async () => {
+            setStories([
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: false, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+                {thumb: "https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg", owner: {avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", isOnline: true, fullname: "Lee Chong Wei"}},
+            ])
+        }
+
+        fetchStories();
+    }, []);
 
     return (
         <Flex mt={"75px"} w={"95vw"} minH={"90vh"} justifyContent={"space-between"}>
             <HomeLeftMenu flex={30} />
 
-            <Flex className='main-menu-homepage' flex={40} w={"50vw"} mx={"25vw"}
+            <Flex className='main-menu-homepage' flex={40} w={"50vw"} mx={"25vw"} px={2}  borderBottom={"2px solid white"}
                 flexDirection={"column"} justifyContent={"flex-start"}
             >
-                <Flex className='user-content-creator-toolkit'
+                <Flex className='user-content-creator-toolkit' w={"full"}
                     bg={"gray.dark"} borderRadius={"md"} px={4} py={2} 
                     flexDirection={"column"} justifyContent={"flex-start"}
                 >
@@ -55,6 +75,8 @@ function HomePage() {
                         </Button>
                     </Flex>
                 </Flex>
+
+                <MultiElementCarousel className="story-carousel-homepage" data={stories} length={STORIES_PER_TIME}/>
             </Flex>
 
             <HomeRightMenu flex={30}/>
