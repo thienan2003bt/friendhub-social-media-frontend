@@ -8,11 +8,14 @@ import { ImProfile } from 'react-icons/im';
 import { FaBusinessTime } from 'react-icons/fa';
 import MultiElementCarousel from '../components/common/Carousel/MultiElementCarousel';
 import { useEffect, useState } from 'react';
+import HomePost from '../components/home/HomePost';
 
 function HomePage() {
     const STORIES_PER_TIME = 5;
     const navigate = useNavigate();
+
     const [stories, setStories] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         const fetchStories = async () => {
@@ -29,7 +32,27 @@ function HomePage() {
             ])
         }
 
+        const fetchPosts = async () => {
+            setPosts([{
+                id: "p-00001", 
+                title: "Hello world from Lee Chong Wei of Malaysia!", 
+                images: ["https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg"],
+                createdAt: "2 days ago", 
+                owner: {
+                    avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", 
+                    isOnline: true, 
+                    fullname: "Lee Chong Wei", 
+                },
+                reactions: {
+                    total: 317, likes: 200, love: 60, haha: 35, wow: 20, sad: 2
+                },
+                comments: 23,
+                shares: 17
+            }])
+        }
+
         fetchStories();
+        fetchPosts();
     }, []);
 
     return (
@@ -77,6 +100,14 @@ function HomePage() {
                 </Flex>
 
                 <MultiElementCarousel className="story-carousel-homepage" data={stories} length={STORIES_PER_TIME}/>
+
+                <Flex className='post-list-homepage' flexDirection={"column"} gap={4} w={"full"}>
+                    {posts.length > 0
+                    && posts.map((post, id) => {
+                        return <HomePost key={`post-homepage-${id}`} _post={post}>
+                        </HomePost>
+                    })}
+                </Flex>
             </Flex>
 
             <HomeRightMenu flex={30}/>
