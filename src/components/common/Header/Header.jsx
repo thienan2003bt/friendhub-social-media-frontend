@@ -11,7 +11,7 @@ import { MdNotificationsActive } from "react-icons/md";
 import { RxDropdownMenu } from "react-icons/rx";
 
 import './Header.scss';
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine, RiHistoryFill } from "react-icons/ri";
 
 
 
@@ -63,27 +63,29 @@ function Header() {
     
 
     return (
-        <Flex w={"95vw"} className="app-header" justifyContent={"space-between"} gap={4} margin={"0 auto"}>
-            <Flex className="left-side-header" flex={30} w={"full"} justifyContent={"center"} gap={2}
+        <Flex zIndex={1000000} w={"100vw"} className="app-header" justifyContent={"space-between"} gap={4}
+            position={"fixed"} top={"0"} left={"0px"} bg={"gray.800"} paddingY={3}
+        >
+            <Flex className="left-side-header" flex={30} w={"full"} justifyContent={"flex-start"} gap={2} pl={2}
                 position={"relative"}>
                 <Link to={"/"}>
                     <Image src={logo} alt="App logo" cursor={"pointer"} _hover={{opacity: 0.7}} />
                 </Link>
                 <Flex position={"relative"} flexDirection={"column"} alignItems={"center"}>
                     <Input type="text" value={searchText} onChange={(e) => handleChangeTextSearch(e)} onKeyDown={(e) => handleSearch(e)}
-                        placeholder="Search here ..." w={"300px"} borderRadius={"2xl"} 
+                        placeholder="Search here ..." w={"250px"} borderRadius={"2xl"} 
                         onFocus={() => setIsSearchMenuOpen(true)}
                         onBlur={() => setIsSearchMenuOpen(false)}
                         
                     />
 
-                    <Flex position={"absolute"} top={"48px"} hidden={isSearchMenuOpen === false} 
+                    <Flex position={"absolute"} top={"48px"} hidden={isSearchMenuOpen === false} zIndex={1000} 
                     w={"full"} p={2} borderRadius={"0 0 12px 12px"} bg={"gray.900"}>
                         {suggestedSearchResults.length > 0 
                         && suggestedSearchResults.slice(0, 8).map((result, id) => {
                             return (
                                 <Flex key={`search-result-${id}`} w={"full"} justifyContent={"space-between"} 
-                                    cursor={"pointer"} p={2} width={"full"}
+                                    cursor={"pointer"} p={2} width={"full"}bg={"gray"}
                                 >
                                     <Button onMouseDown={(e) => e.preventDefault()} flex={9} onClick={() => handleChooseSuggestedResult(id)}>
                                         <Text w={"full"} p={2} textAlign={"start"} >
@@ -111,6 +113,10 @@ function Header() {
                     <CiStreamOn size={ICON_SIZE} className="header-icon" title="Streams" 
                     fill={selectedNavigator === "Streams" ? SELECTED_NAVIGATOR_COLOR : "white"} />
                 </Button>
+                <Button px={"40px"} py={"8px"} onClick={() => setSelectedNavigator("Stories")}>
+                    <RiHistoryFill size={ICON_SIZE} className="header-icon" title="Stories" 
+                    fill={selectedNavigator === "Stories" ? SELECTED_NAVIGATOR_COLOR : "white"} />
+                </Button>
                 <Button px={"40px"} py={"8px"} onClick={() => setSelectedNavigator("Groups")}>
                     <HiMiniUserGroup size={ICON_SIZE} className="header-icon" title="Groups"
                     fill={selectedNavigator === "Groups" ? SELECTED_NAVIGATOR_COLOR : "white"} />
@@ -121,7 +127,7 @@ function Header() {
                 </Button>
             </Flex>
 
-            <Flex className="right-side-header" flex={30} justifyContent={"flex-end"} gap={4}>
+            <Flex className="right-side-header" flex={30} justifyContent={"flex-end"} pr={8} gap={4}>
                 <Button className="header-icon" >
                     <RxDropdownMenu size={ICON_SIZE} />
                 </Button>

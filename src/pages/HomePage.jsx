@@ -4,7 +4,7 @@ import HomeLeftMenu from '../components/home/HomeLeftMenu';
 
 function HomePage() {
     return (
-        <Flex w={"95vw"} minH={"65vh"} justifyContent={"space-between"}>
+        <Flex mt={"75px"} w={"95vw"} minH={"90vh"} justifyContent={"space-between"}>
             <HomeLeftMenu flex={30} />
 
             <Flex className='main-menu-homepage' flex={40}
