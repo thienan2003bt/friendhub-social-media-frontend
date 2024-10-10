@@ -48,8 +48,12 @@ function Header() {
     }
 
     const handleChooseSuggestedResult = async (id) => {
-        console.log("Has called  this");
         window.alert("Has chosen the suggested result: " + id);
+        const searchResult = suggestedSearchResults[id]?.text;
+        setSearchText(searchResult);
+
+        // TODO: call API here
+        setIsSearchMenuOpen(false);
     }
 
     const handleDeleteSuggestedResult =  async (e, id) => {
@@ -81,14 +85,15 @@ function Header() {
                                 <Flex key={`search-result-${id}`} w={"full"} justifyContent={"space-between"} 
                                     cursor={"pointer"} p={2} width={"full"}
                                 >
-                                    <Text flex={9} p={2} _hover={{backgroundColor: "rgba(255, 255, 255, 0.08)"}} 
-                                        onClick={() => handleChooseSuggestedResult(id)}
-                                        textAlign={"start"}>
-                                        {result?.text}
-                                    </Text>
+                                    <Button onMouseDown={(e) => e.preventDefault()} flex={9} onClick={() => handleChooseSuggestedResult(id)}>
+                                        <Text w={"full"} p={2} textAlign={"start"} >
+                                            {result?.text}
+                                        </Text>
+                                    </Button>
                                     <RiDeleteBinLine flex={1} size={40} style={{padding: '8px'}} 
                                         _hover={{backgroundColor: "rgba(255, 255, 255, 0.08)"}} 
                                         onClick={(e) => handleDeleteSuggestedResult(e, id)}
+                                        onMouseDown={(e) => e.preventDefault()}
                                     />
                                 </Flex>
                             )
