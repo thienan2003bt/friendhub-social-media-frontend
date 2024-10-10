@@ -61,7 +61,7 @@ function HomeLeftMenu() {
 
             <Flex className="lower-menu" flex={50} flexDirection={"column"} alignItems={"flex-start"}>
                 <Flex w={"full"} justifyContent={"space-between"} my={2}>
-                    <Text fontSize={"24px"} fontStyle={"italic"}>Shortcuts</Text>
+                    <Text fontSize={"16px"} fontStyle={"italic"}>Shortcuts</Text>
                     <Link to={"/shortcuts"} _hover={{textDecoration: "underline"}}>Edit</Link>
                 </Flex>
 

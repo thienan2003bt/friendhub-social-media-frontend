@@ -1,7 +1,7 @@
 import { Avatar, Button, Flex, Image, Input, Text } from "@chakra-ui/react";
 import logo from '../../../assets/react.svg';
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbHomeFilled } from "react-icons/tb";
 import { CiStreamOn } from "react-icons/ci";
 import { HiMiniUserGroup } from "react-icons/hi2";
@@ -60,6 +60,20 @@ function Header() {
         e.preventDefault();
         window.alert("Has deleted the suggested result: " + id);
     }
+
+    useEffect(() => {
+        setSuggestedSearchResults([
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+            {text: 'Hello world!'},
+        ])
+    }, [])
     
 
     return (
@@ -68,26 +82,29 @@ function Header() {
         >
             <Flex className="left-side-header" flex={30} w={"full"} justifyContent={"flex-start"} gap={2} pl={2}
                 position={"relative"}>
-                <Link to={"/"}>
-                    <Image src={logo} alt="App logo" cursor={"pointer"} _hover={{opacity: 0.7}} />
-                </Link>
-                <Flex position={"relative"} flexDirection={"column"} alignItems={"center"}>
-                    <Input type="text" value={searchText} onChange={(e) => handleChangeTextSearch(e)} onKeyDown={(e) => handleSearch(e)}
-                        placeholder="Search here ..." w={"250px"} borderRadius={"2xl"} 
-                        onFocus={() => setIsSearchMenuOpen(true)}
-                        onBlur={() => setIsSearchMenuOpen(false)}
-                        
-                    />
-
-                    <Flex position={"absolute"} top={"48px"} hidden={isSearchMenuOpen === false} zIndex={1000} 
-                    w={"full"} p={2} borderRadius={"0 0 12px 12px"} bg={"gray.900"}>
+                <Flex pl={2} justifyContent={"flex-start"} gap={2}>
+                    <Link to={"/"}>
+                        <Image src={logo} alt="App logo" cursor={"pointer"} _hover={{opacity: 0.7}} />
+                    </Link>
+                    <Flex flexDirection={"column"} alignItems={"center"}>
+                        <Input type="text" value={searchText} onChange={(e) => handleChangeTextSearch(e)} onKeyDown={(e) => handleSearch(e)}
+                            placeholder="Search here ..." w={"250px"} borderRadius={"2xl"} 
+                            onFocus={() => setIsSearchMenuOpen(true)}
+                            onBlur={() => setIsSearchMenuOpen(false)}
+                            
+                        />
+                    </Flex>
+                </Flex>
+                <Flex width={"20vw"} position={"absolute"} top={"48px"} hidden={isSearchMenuOpen === false} 
+                    p={2} borderRadius={"0 0 12px 12px"} bg={"gray.900"} flexDirection={"column"}>
                         {suggestedSearchResults.length > 0 
                         && suggestedSearchResults.slice(0, 8).map((result, id) => {
                             return (
                                 <Flex key={`search-result-${id}`} w={"full"} justifyContent={"space-between"} 
-                                    cursor={"pointer"} p={2} width={"full"}bg={"gray"}
+                                    cursor={"pointer"} p={2} width={"full"} bg={"#242424"}
                                 >
-                                    <Button onMouseDown={(e) => e.preventDefault()} flex={9} onClick={() => handleChooseSuggestedResult(id)}>
+                                    <Button onMouseDown={(e) => e.preventDefault()} flex={9} onClick={() => handleChooseSuggestedResult(id)}
+                                        bg={"#242424"}>
                                         <Text w={"full"} p={2} textAlign={"start"} >
                                             {result?.text}
                                         </Text>
@@ -100,7 +117,6 @@ function Header() {
                                 </Flex>
                             )
                         })}
-                    </Flex>
                 </Flex>
             </Flex>
 
