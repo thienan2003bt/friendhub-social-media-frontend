@@ -1,14 +1,12 @@
 import { Container } from '@chakra-ui/react'
 import './App.css'
-import Header from './components/common/Header/Header'
-import Footer from './components/common/Footer/Footer'
+import IndexRoute from './routes/IndexRoute'
 
 function App() {
 
   return (
     <Container w={"100vw"}>
-		  <Header />
-      <Footer />
+      <IndexRoute />
     </Container>
   )
 }
