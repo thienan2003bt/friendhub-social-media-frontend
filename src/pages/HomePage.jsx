@@ -1,13 +1,11 @@
 
 import { Flex, Text } from '@chakra-ui/react';
+import HomeLeftMenu from '../components/home/HomeLeftMenu';
 
 function HomePage() {
     return (
         <Flex w={"95vw"} minH={"65vh"} justifyContent={"space-between"}>
-            <Flex className='left-menu-homepage' flex={30}
-            >
-                <Text w={"full"} textAlign={"center"}>Left side menu</Text>
-            </Flex>
+            <HomeLeftMenu flex={30} />
 
             <Flex className='main-menu-homepage' flex={40}
             >
