@@ -1,11 +1,12 @@
-import { Button, Container } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import './App.css'
+import IndexRoute from './routes/IndexRoute'
 
 function App() {
 
   return (
-    <Container>
-        <Button>Hello World!</Button>
+    <Container w={"100vw"}>
+      <IndexRoute />
     </Container>
   )
 }
