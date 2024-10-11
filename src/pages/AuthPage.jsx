@@ -14,8 +14,17 @@ function AuthPage() {
     const [isShowingPassword, setIsShowingPassword] = useState(false);
     const [searchParams] = useSearchParams();
 
-    const [inputs, setInputs] = useState({email: "", password: ""});
+    const [inputs, setInputs] = useState({email: "", password: "", fullname: "", retypePassword: ""});
 
+    const handleEnter = (e) => {
+        if(e.key !== "Enter" && e.key !== 'NumpadEnter') {
+            return;
+        } else if(authState === "signup") {
+            return;
+        }
+
+        handleSubmitLogin();
+    }
 
     const handleLoginWith = (platform) => {
         let fetchingURL = `${APP_SERVER_URL}/auth/${platform}`;
@@ -35,6 +44,12 @@ function AuthPage() {
         window.alert("Response: " + response)
     }
 
+    const handleSubmitSignup = async () => {
+        // TODO: Call API here
+        const response = "fetch data here!"
+        window.alert("Response: " + response)
+    }
+
     useEffect(() => {
         const newState = searchParams.get("state");
         if(newState && newState !== authState) {
@@ -46,13 +61,10 @@ function AuthPage() {
     return (
         <Flex w={"99vw"} justifyContent={"stretch"} overflow={"hidden"}>
             <Image src={banner ?? ""} height={"100vh"} />
-            <Flex className="auth-form">
-
-            </Flex>
 
             <Flex p={16} align={'center'} justify={'center'} w={"full"}>
                 <Stack spacing={4} w={'full'} maxW={'md'}>
-                    <Heading fontSize={'3xl'} mb={1}>{"Login to your account 💖"}</Heading>
+                    <Heading fontSize={'3xl'} mb={1}>{authState === "login" ? "Login to your account" : "Sign up to join us"} 💖</Heading>
                     <FormControl id="email">
                         <FormLabel fontStyle={"italic"} htmlFor="email">Email address</FormLabel>
                         <Input type="email" required
@@ -60,11 +72,20 @@ function AuthPage() {
                         />
                     </FormControl>
 
+                    {authState === "signup"
+                        && <FormControl id="fullname">
+                            <FormLabel fontStyle={"italic"} htmlFor="fullname">Fullname</FormLabel>
+                            <Input type="text" required
+                                value={inputs?.fullname} onChange={(e) => setInputs({...inputs, fullname: e.target.value})} 
+                            />
+                        </FormControl>
+                    }
+
                     <FormControl id="password">
                         <FormLabel fontStyle={"italic"} htmlFor="password">Password</FormLabel>
                         <InputGroup>
                             <Input type={isShowingPassword === true ? "text" : "password"} required
-                                value={inputs?.password} onChange={(e) => setInputs({...inputs, password: e.target.value})}
+                                value={inputs?.password} onChange={(e) => setInputs({...inputs, password: e.target.value})} onKeyDown={(e) => handleEnter(e)}
                             />
                             <InputRightElement h={'full'}>
                                 <Button
@@ -76,6 +97,24 @@ function AuthPage() {
                         </InputGroup>
                     </FormControl>
 
+                    {authState === "signup"
+                        && <FormControl id="retype-password">
+                            <FormLabel fontStyle={"italic"} htmlFor="retype-password">Retype password</FormLabel>
+                            <InputGroup>
+                                <Input type={isShowingPassword === true ? "text" : "password"} required
+                                    value={inputs?.retypePassword} onChange={(e) => setInputs({...inputs, retypePassword: e.target.value})}
+                                />
+                                <InputRightElement h={'full'}>
+                                    <Button
+                                        variant={'ghost'}
+                                        onClick={() => setIsShowingPassword((isShowingPassword) => !isShowingPassword)}>
+                                        {isShowingPassword === true ? <ViewIcon /> : <ViewOffIcon />}
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
+                        </FormControl>
+                    }
+
                     <Stack spacing={6} borderBottom={"1px solid white"} pb={4}>
                         <Stack
                             direction={{ base: 'column', sm: 'row' }}
@@ -83,7 +122,9 @@ function AuthPage() {
                             justify={'space-between'}
                         >
                             <Text as={Link} to={"/auth/reset"} color={'blue.500'}>Forgot password?</Text>
-                            <Text as={Link} to={"/auth?signup"} color={'blue.500'}>{"Don't have any account?"}</Text>
+                            <Text as={Link} to={`/auth?state=${authState === "login" ? "signup" : "login"}`} color={'blue.500'}>
+                                {authState === "login" ? "Don't have any account?" : "Already have an account?"}
+                            </Text>
                         </Stack>
 
                     </Stack>
@@ -98,9 +139,16 @@ function AuthPage() {
                         </Flex> 
                     </Flex>
 
-                    <Button height={"48px"} colorScheme={'blue'} variant={'solid'} onClick={() => handleSubmitLogin()}>
-                        Login
+                    {authState === "login"
+                    ? <Button height={"48px"} colorScheme={'blue'} variant={'solid'} onClick={() => handleSubmitLogin()}>
+                        <Text fontSize={20} fontWeight={"bold"}>Login</Text>
                     </Button>
+                    : <Button height={"48px"} colorScheme={'blue'} variant={'solid'} onClick={() => handleSubmitSignup()}>
+                        <Text fontSize={20} fontWeight={"bold"}>Signup</Text>
+
+                    </Button>
+                    }
+                    
                 </Stack>
             </Flex>
         </Flex>

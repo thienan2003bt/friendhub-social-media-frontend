@@ -39,11 +39,11 @@ function HomeLeftMenu() {
         <Flex w={"20vw"} my={1} height={"90vh"} flexDirection={"column"} overflowY={"auto"} 
             position={"fixed"} top={"75px"} left={"32px"}
         >
-            <Flex className="upper-menu" flexDirection={"column"} flex={50} height={"fit-content"}>
+            <Flex className="upper-menu" flexDirection={"column"} flex={50} gap={2} height={"fit-content"}>
                 {menuItems.length > 0
                 && menuItems.map((item, id) => {
-                    return <Button key={`menu-item-${id}`} w={"full"} height={"48px"} bg={"gray.dark"} onClick={() => navigate(item?.linkURL)} 
-                    backgroundColor={"#242424"} zIndex={10} borderRadius={"none"}
+                    return <Button key={`menu-item-${id}`} w={"full"} height={"48px"} onClick={() => navigate(item?.linkURL)} 
+                    bg={"none"} zIndex={10} borderRadius={"none"}
                     _hover={{
                         border: "0.5px solid white",
                         backgroundColor: "rgba(255, 255, 255, 0.16)",
@@ -65,12 +65,12 @@ function HomeLeftMenu() {
                     <Link to={"/shortcuts"} _hover={{textDecoration: "underline"}}>Edit</Link>
                 </Flex>
 
-                <Flex w={"full"} flexDirection={"column"} alignItems={"flex-start"}>
+                <Flex w={"full"} flexDirection={"column"} alignItems={"flex-start"} gap={2}>
                 {shortcuts.length > 0 
                 && shortcuts.slice(0, 5).map((shortcut, id) => {
                     return (
-                        <Flex w={"full"} as={Button} key={`shortcut-${id}`} justifyContent={"flex-start"} height={"48px"}
-                            backgroundColor={"#242424"} marginY={0} borderRadius={"none"}
+                        <Flex w={"full"} as={Button} key={`shortcut-${id}`} justifyContent={"flex-start"} height={"48px"} gap={4}
+                            bg={"none"} marginY={0} borderRadius={"none"}
                             _hover={{
                                 border: "0.5px solid white",
                                 backgroundColor: "rgba(255, 255, 255, 0.16)",

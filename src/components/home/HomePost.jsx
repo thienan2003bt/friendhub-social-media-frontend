@@ -1,13 +1,20 @@
 import { Avatar, AvatarBadge, Button, Divider, Flex, Image, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { BiSolidHide, BiSolidLike } from "react-icons/bi";
+import { BiSolidHide } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
-import { FaFaceLaughSquint, FaRegShareFromSquare } from "react-icons/fa6";
-import { IoHeartCircleSharp } from "react-icons/io5";
+import { FaRegShareFromSquare } from "react-icons/fa6";
 import { MdOutlinePublic } from "react-icons/md";
 import { SlLike } from "react-icons/sl";
 import { Link } from "react-router-dom";
+
+import reactionLike from "../../assets/post_reactions/emojis/like.png"
+import reactionLove from "../../assets/post_reactions/emojis/love.png"
+import reactionHaha from "../../assets/post_reactions/emojis/haha.png"
+import reactionSad from "../../assets/post_reactions/emojis/sad.png"
+import reactionAngry from "../../assets/post_reactions/emojis/Angry.png"
+import reactionWow from "../../assets/post_reactions/emojis/wow.png"
+
 
 function HomePost({ _post }) {
     const [post, setPost] = useState({});
@@ -87,9 +94,12 @@ function HomePost({ _post }) {
 
             <Flex className="reaction-statistics" justifyContent={"space-between"} mx={3}>
                 <Flex>
-                    <BiSolidLike fill="blue" size={20}/>
-                    <IoHeartCircleSharp fill="red" color="white" size={20}/>
-                    <FaFaceLaughSquint fill="yellow" color="white" size={20} />
+                    <Image src={reactionLike} w={"28px"} cursor={"pointer"}/>
+                    <Image src={reactionLove} w={"28px"} cursor={"pointer"}/>
+                    <Image src={reactionHaha} w={"28px"} cursor={"pointer"}/>
+                    <Image src={reactionWow} w={"28px"} cursor={"pointer"}/>
+                    <Image src={reactionSad} w={"28px"} cursor={"pointer"}/>
+                    <Image src={reactionAngry} w={"28px"} cursor={"pointer"}/>
                     <Text pl={2}>{post.reactions?.total}</Text>
                 </Flex>
 
