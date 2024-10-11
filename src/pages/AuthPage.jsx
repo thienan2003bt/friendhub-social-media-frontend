@@ -62,7 +62,7 @@ function AuthPage() {
         <Flex w={"99vw"} justifyContent={"stretch"} overflow={"hidden"}>
             <Image src={banner ?? ""} height={"100vh"} />
 
-            <Flex p={16} align={'center'} justify={'center'} w={"full"}>
+            <Flex p={12} align={'center'} justify={'center'} w={"full"}>
                 <Stack spacing={4} w={'full'} maxW={'md'}>
                     <Heading fontSize={'3xl'} mb={1}>{authState === "login" ? "Login to your account" : "Sign up to join us"} 💖</Heading>
                     <FormControl id="email">

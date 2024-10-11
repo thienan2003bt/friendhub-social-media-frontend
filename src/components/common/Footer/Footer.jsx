@@ -31,7 +31,7 @@ function Footer() {
     }, [])
 
     return (
-        <Flex className="app-footer" w={"47.5vw"} margin={"0 25vw"} justifyContent={"space-evenly"}>
+        <Flex className="app-footer" w={"47.5vw"} margin={"0 25vw"} justifyContent={"space-evenly"} borderTop={"2px solid white"}>
             <Flex className="language-section-footer" flexDirection={"column"} 
                 justifyContent={"flex-start"} alignItems={"flex-start"}
                 p={3}
