@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import ProfilePostsIntro from "./ProfilePostsIntro";
 import ProfilePostPhotos from "./ProfilePostPhotos";
+import ProfilePostsFriends from './ProfilePostsFriends';
 
 function ProfilePosts() {
     const [currentUser, selectedToolbar, setSelectedToolbar] = useOutletContext();
@@ -23,6 +24,7 @@ function ProfilePosts() {
             <Flex flex={4} className="profile-info-section" flexDirection={"column"} gap={4} p={3}>
                 <ProfilePostsIntro currentUser={currentUser} userSlug={userSlug} />
                 <ProfilePostPhotos currentUser={currentUser} userSlug={userSlug} />
+                <ProfilePostsFriends currentUser={currentUser} userSlug={userSlug} />
             </Flex>
 
             <Flex className="posts-section" flex={6}>

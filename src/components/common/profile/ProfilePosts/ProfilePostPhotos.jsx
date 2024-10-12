@@ -32,7 +32,7 @@ function ProfilePostPhotos({ currentUser, userSlug }) {
 
         fetchPhotoData();
         
-    }, [currentUser, user.slug, photoData]);
+    }, [currentUser, user.slug]);
 
     useEffect(() => {
         if(!user?.slug || user?.slug !== currentUser.slug) {
