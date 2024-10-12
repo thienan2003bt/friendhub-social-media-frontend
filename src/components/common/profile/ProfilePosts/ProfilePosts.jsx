@@ -5,6 +5,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 import ProfilePostsIntro from "./ProfilePostsIntro";
 import ProfilePostPhotos from "./ProfilePostPhotos";
 import ProfilePostsFriends from './ProfilePostsFriends';
+import ProfilePostsEvents from './ProfilePostsEvents';
 
 function ProfilePosts() {
     const [currentUser, selectedToolbar, setSelectedToolbar] = useOutletContext();
@@ -25,6 +26,9 @@ function ProfilePosts() {
                 <ProfilePostsIntro currentUser={currentUser} userSlug={userSlug} />
                 <ProfilePostPhotos currentUser={currentUser} userSlug={userSlug} />
                 <ProfilePostsFriends currentUser={currentUser} userSlug={userSlug} />
+                {currentUser?.slug === userSlug
+                    && <ProfilePostsEvents currentUser={currentUser}/>
+                }
             </Flex>
 
             <Flex className="posts-section" flex={6}>
