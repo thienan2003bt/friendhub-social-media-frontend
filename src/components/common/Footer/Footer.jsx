@@ -26,12 +26,12 @@ function Footer() {
 
     useEffect(() => {
         setLanguages([{name: "English", code: "UK"}, {name: "American", code: "US"}]);
-        setPolicies([{name: "Term of services"}, {name: "Cookies"}]);
+        setPolicies([{name: "Term of services"}, {name: "Cookies"}, {name: "Licenses: Icons8"}]);
         setNavigators([{name: "Home", linkURL: "/"}, {name: "Games", linkURL: "/games"}])
     }, [])
 
     return (
-        <Flex className="app-footer" w={"47.5vw"} margin={"0 25vw"} justifyContent={"space-evenly"}>
+        <Flex className="app-footer" w={"47.5vw"} margin={"0 25vw"} justifyContent={"space-evenly"} borderTop={"2px solid white"}>
             <Flex className="language-section-footer" flexDirection={"column"} 
                 justifyContent={"flex-start"} alignItems={"flex-start"}
                 p={3}
@@ -52,7 +52,7 @@ function Footer() {
                 justifyContent={"flex-start"} alignItems={"flex-start"}
                 p={3}
             >
-                <Text fontSize={24} fontWeight={"bold"}>Policies</Text>
+                <Text fontSize={24} fontWeight={"bold"}>Navigators</Text>
                 <Divider marginY={2} />
                 <Flex flexDirection={"column"} alignItems={"flex-start"} justifyContent={"flex-start"}>
                 { navigators.length > 0

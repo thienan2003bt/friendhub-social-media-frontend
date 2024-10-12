@@ -59,7 +59,7 @@ function HomePage() {
         <Flex mt={"75px"} w={"95vw"} minH={"90vh"} justifyContent={"space-between"}>
             <HomeLeftMenu flex={30} />
 
-            <Flex className='main-menu-homepage' flex={40} w={"50vw"} mx={"25vw"} px={2}  borderBottom={"2px solid white"}
+            <Flex className='main-menu-homepage' flex={40} w={"50vw"} mx={"25vw"} px={2} 
                 flexDirection={"column"} justifyContent={"flex-start"}
             >
                 <Flex className='user-content-creator-toolkit' w={"full"}

@@ -1,4 +1,4 @@
-import { Avatar, Button, Flex, Image, Input, Text } from "@chakra-ui/react";
+import { Avatar, Button, Flex, Image, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
 import logo from '../../../assets/react.svg';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import { RxDropdownMenu } from "react-icons/rx";
 
 import './Header.scss';
 import { RiDeleteBinLine, RiHistoryFill } from "react-icons/ri";
+import { SearchIcon } from "@chakra-ui/icons";
 
 
 
@@ -87,12 +88,17 @@ function Header() {
                         <Image src={logo} alt="App logo" cursor={"pointer"} _hover={{opacity: 0.7}} />
                     </Link>
                     <Flex flexDirection={"column"} alignItems={"center"}>
-                        <Input type="text" value={searchText} onChange={(e) => handleChangeTextSearch(e)} onKeyDown={(e) => handleSearch(e)}
-                            placeholder="Search here ..." w={"250px"} borderRadius={"2xl"} 
-                            onFocus={() => setIsSearchMenuOpen(true)}
-                            onBlur={() => setIsSearchMenuOpen(false)}
-                            
-                        />
+                        <InputGroup>
+                        <InputLeftElement>
+                            <SearchIcon size={16} />
+                        </InputLeftElement>
+                            <Input type="text" value={searchText} onChange={(e) => handleChangeTextSearch(e)} onKeyDown={(e) => handleSearch(e)}
+                                placeholder="Search here ..." w={"250px"} borderRadius={"2xl"} 
+                                onFocus={() => setIsSearchMenuOpen(true)}
+                                onBlur={() => setIsSearchMenuOpen(false)}
+                                
+                            />
+                        </InputGroup>
                     </Flex>
                 </Flex>
                 <Flex width={"20vw"} position={"absolute"} top={"48px"} hidden={isSearchMenuOpen === false} 

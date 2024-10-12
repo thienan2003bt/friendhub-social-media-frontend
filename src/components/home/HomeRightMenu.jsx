@@ -40,11 +40,11 @@ function HomeRightMenu() {
                     <Link to={"/friends/edit"}>Edit</Link>
                 </Flex>
 
-                <Flex my={2} flexDirection={"column"} justifyContent={"flex-start"}>
+                <Flex my={2} flexDirection={"column"} justifyContent={"flex-start"} gap={2}>
                     {onlineFriends.length > 0
                     && onlineFriends.slice(0, 10).map((friend, id) => {
-                        return <Button key={`online-friend-${id}`}  w={"full"} height={"48px"} bg={"gray.dark"} 
-                            backgroundColor={"#242424"} zIndex={10} borderRadius={"none"} p={2}
+                        return <Button key={`online-friend-${id}`} w={"full"} height={"48px"} bg={"none"}
+                             zIndex={10} borderRadius={"none"}
                             _hover={{
                                 border: "0.5px solid white",
                                 backgroundColor: "rgba(255, 255, 255, 0.16)",
@@ -70,11 +70,11 @@ function HomeRightMenu() {
                     <Link to={"/friends/edit"}>Edit</Link>
                 </Flex>
 
-                <Flex my={2} flexDirection={"column"} justifyContent={"flex-start"}>
+                <Flex my={2} flexDirection={"column"} justifyContent={"flex-start"} gap={2}>
                     {groupChats.length > 0
                     && groupChats.slice(0, 5).map((groupChat, id) => {
-                        return <Button key={`online-group-chat-${id}`}  w={"full"} height={"48px"} bg={"gray.dark"} 
-                            backgroundColor={"#242424"} zIndex={10} borderRadius={"none"} p={2}
+                        return <Button key={`online-group-chat-${id}`}  w={"full"} height={"48px"} bg={"none"} 
+                            zIndex={10} borderRadius={"none"} p={2}
                             _hover={{
                                 border: "0.5px solid white",
                                 backgroundColor: "rgba(255, 255, 255, 0.16)",
