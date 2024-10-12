@@ -54,7 +54,7 @@ function ProfilePostsIntro({ currentUser, userSlug }) {
     }
 
     return (
-        <Flex className="intro-section" flexDirection={"column"} textAlign={"start"} gap={4}>
+        <Flex className="intro-section" flexDirection={"column"} textAlign={"start"} gap={4}  bg={"gray.dark"} p={"16px 8px"}>
                     <Flex className="intro-bio" flexDirection={"column"}>
                         <Text fontSize={24} fontWeight={"bold"}>Intro</Text>
                         <Text textAlign={"center"}>{introData?.bio}</Text>
