@@ -17,13 +17,13 @@ function HomeLeftMenu() {
     useEffect(() => {
         
         setMenuItems([
-            {icon: <Avatar width={"32px"} height={"32px"} src=""/>, linkURL: "/profile", title: "Profile"},
+            {icon: <Avatar width={"32px"} height={"32px"} src=""/>, linkURL: "/profile/leechongwei", title: "Profile"},
             {icon: <FaUserFriends size={32} color="green" />, linkURL: "/friends", title: "Friends"},
-            {icon: <HiMiniUserGroup size={32} color="green"/>, linkURL: "/profile", title: "Groups"},
-            {icon: <CiStreamOn size={32} color="green"/>, linkURL: "/profile", title: "Streams"},
+            {icon: <HiMiniUserGroup size={32} color="green"/>, linkURL: "/profile/leechongwei", title: "Groups"},
+            {icon: <CiStreamOn size={32} color="green"/>, linkURL: "/profile/leechongwei", title: "Streams"},
             {icon: <RiHistoryFill size={32} color="green"/>, linkURL: "/stories", title: "Stories"},
-            {icon: <PiGameControllerFill size={32} color="green"/>, linkURL: "/profile", title: "Games"},
-            {icon: <FaSave size={32} color="green"/>, linkURL: "/profile", title: "Saved"},
+            {icon: <PiGameControllerFill size={32} color="green"/>, linkURL: "/profile/leechongwei", title: "Games"},
+            {icon: <FaSave size={32} color="green"/>, linkURL: "/profile/leechongwei", title: "Saved"},
         ])
 
         setShortcuts([

@@ -24,7 +24,8 @@ function ProfilePage() {
 
     const currentUser = useMemo(() => {
         return {
-        id: "u-0001", 
+        id: "u-0001",
+        slug: "leechongwei",
         fullname: "Lee Chong Wei", 
         avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg",
         friends: [
@@ -172,7 +173,7 @@ function ProfilePage() {
             </Flex>
 
             <Flex className="main-section-profile-page">
-                <Outlet context={[selectedToolbar, setSelectedToolbar]}/>
+                <Outlet context={[currentUser, selectedToolbar, setSelectedToolbar]}/>
             </Flex>
         </Flex>
     );
