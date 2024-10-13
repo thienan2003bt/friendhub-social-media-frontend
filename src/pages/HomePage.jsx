@@ -1,18 +1,14 @@
 
-import { Avatar, Button, Divider, Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import HomeLeftMenu from '../components/home/HomeLeftMenu';
 import HomeRightMenu from '../components/home/HomeRightMenu';
-import { BiSolidVideoRecording, BiSolidVideos } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
-import { ImProfile } from 'react-icons/im';
-import { FaBusinessTime } from 'react-icons/fa';
 import MultiElementCarousel from '../components/common/Carousel/MultiElementCarousel';
 import { useEffect, useState } from 'react';
-import HomePost from '../components/home/HomePost';
+import UserContentCreatorToolkit from '../components/common/UserContentCreatorToolkit';
+import PostInList from '../components/post/PostInList';
 
 function HomePage() {
     const STORIES_PER_TIME = 5;
-    const navigate = useNavigate();
 
     const [stories, setStories] = useState([]);
     const [posts, setPosts] = useState([]);
@@ -48,6 +44,21 @@ function HomePage() {
                 },
                 comments: 23,
                 shares: 17
+            }, {
+                id: "p-00001", 
+                title: "Hello world from Lee Chong Wei of Malaysia!", 
+                images: ["https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg"],
+                createdAt: "2 days ago", 
+                owner: {
+                    avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", 
+                    isOnline: true, 
+                    fullname: "Lee Chong Wei", 
+                },
+                reactions: {
+                    total: 317, likes: 200, love: 60, haha: 35, wow: 20, sad: 2
+                },
+                comments: 23,
+                shares: 17
             }])
         }
 
@@ -62,50 +73,15 @@ function HomePage() {
             <Flex className='main-menu-homepage' flex={40} w={"50vw"} mx={"25vw"} px={2} 
                 flexDirection={"column"} justifyContent={"flex-start"}
             >
-                <Flex className='user-content-creator-toolkit' w={"full"}
-                    bg={"gray.dark"} borderRadius={"md"} px={4} py={2} 
-                    flexDirection={"column"} justifyContent={"flex-start"}
-                >
-                    <Flex w={"full"} px={2} className='upper-toolkit' justifyContent={"flex-start"} gap={2}>
-                        <Avatar flex={1} src="" width={"36px"} height={"36px"}/>
-
-                        <Button flex={19} ml={2} borderRadius={"3xl"} justifyContent={"start"}>
-                            <Text fontSize={16} px={1} textAlign={"start"} fontWeight={"thin"} fontStyle={"italic"}>How was your day? Express it to us!</Text> 
-                        </Button>
-                    </Flex>
-
-                    <Divider my={3} size={4}/>
-
-                    <Flex w={"full"} p={2} className='lower-toolkit' justifyContent={"space-evenly"}>
-                        <Button className='record-toolkit' onClick={() => navigate("/streams/create")} gap={1}>
-                            <BiSolidVideoRecording size={24} color='red'/>
-                            <Text _hover={{color: "white.800"}}>Start a streaming</Text>
-                        </Button>
-
-                        <Button className='story-toolkit' onClick={() => navigate("/stories/create")} gap={1}>
-                            <BiSolidVideos size={24} color='orange'/>
-                            <Text _hover={{color: "white.800"}}>Create a story</Text>
-                        </Button>
-
-                        <Button className='page-toolkit' onClick={() => navigate("/pages/create")} gap={1}>
-                            <ImProfile size={24} color={"#3068e3"}/>
-                            <Text _hover={{color: "white.800"}}>Publish a page</Text>
-                        </Button>
-
-                        <Button className='memory-toolkit' onClick={() => navigate("/memories/create")} gap={1}>
-                            <FaBusinessTime size={24} color={"yellowgreen"}/>
-                            <Text _hover={{color: "white.800"}}>Save a memory</Text>
-                        </Button>
-                    </Flex>
-                </Flex>
+                <UserContentCreatorToolkit context={"HomePage"} />
 
                 <MultiElementCarousel className="story-carousel-homepage" data={stories} length={STORIES_PER_TIME}/>
 
-                <Flex className='post-list-homepage' flexDirection={"column"} gap={4} w={"full"}>
+                <Flex className='post-list-homepage' flexDirection={"column"} gap={2} w={"full"}>
                     {posts.length > 0
                     && posts.map((post, id) => {
-                        return <HomePost key={`post-homepage-${id}`} _post={post}>
-                        </HomePost>
+                        return <PostInList key={`post-homepage-${id}`} _post={post}>
+                        </PostInList>
                     })}
                 </Flex>
             </Flex>
