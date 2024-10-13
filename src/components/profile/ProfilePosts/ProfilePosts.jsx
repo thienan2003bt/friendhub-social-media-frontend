@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Text } from "@chakra-ui/react";
+import { Button, Divider, Flex, Grid, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 import { useOutletContext, useParams, useSearchParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import ProfilePostsFriends from './ProfilePostsFriends';
 import ProfilePostsEvents from './ProfilePostsEvents';
 import UserContentCreatorToolkit from "../../common/UserContentCreatorToolkit";
 import PostInList from '../../post/PostInList';
+import PostInGrid from '../../post/PostInGrid';
 import { TbFilterSearch } from "react-icons/tb";
 import { IoSettings } from "react-icons/io5";
 import { FaRegListAlt } from "react-icons/fa";
@@ -15,6 +16,8 @@ import { MdOutlineGridOn } from "react-icons/md";
 
 function ProfilePosts() {
     const [posts, setPosts] = useState([]);
+    const [gridPosts, setGridPosts] = useState([]);
+
     const [currentUser, selectedToolbar, setSelectedToolbar] = useOutletContext();
     const {userSlug} = useParams();
     const [viewMode, setViewMode] = useState();
@@ -32,9 +35,25 @@ function ProfilePosts() {
         const newViewMode = searchParams.get("viewmode");
         if(!newViewMode) {
             setViewMode("list");
-        } else {
-            setViewMode(newViewMode);
         }
+        
+        setViewMode(newViewMode);
+        // if(newViewMode === "grid") {
+        //     const newPosts = [];
+        //     posts.forEach((post) => {
+        //         const currentTimeline = post?.timeline;
+        //         if(!currentTimeline) {
+        //             return;
+        //         }
+        //         const foundTimeline = newPosts.filter(p => p.timeline === currentTimeline).length > 0;
+        //         if(foundTimeline) {
+        //             newPosts[currentTimeline]?.posts.push(post);
+        //         } else {
+        //             newPosts.push({timeline: currentTimeline, posts: []})
+        //         }
+
+        //     });
+        // }
     }, [searchParams])
 
     useEffect(() => {
@@ -43,7 +62,7 @@ function ProfilePosts() {
                 id: "p-00001", 
                 title: "Hello world from Lee Chong Wei of Malaysia!", 
                 images: ["https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg"],
-                createdAt: "2 days ago", 
+                createdAt: "2 days ago",
                 owner: {
                     avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", 
                     isOnline: true, 
@@ -69,6 +88,47 @@ function ProfilePosts() {
                 },
                 comments: 23,
                 shares: 17
+            }])
+
+            setGridPosts([{
+                timeline: "October 2024", 
+                posts: [{
+                    id: "p-00001",
+                    title: "Hello world from Lee Chong Wei of Malaysia!",
+                    images: ["https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg"],
+                    owner: {
+                        avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", 
+                        isOnline: true, 
+                    },
+                    createdAt: "2 days ago",
+                }, {
+                    id: "p-00001",
+                    title: "Hello world from Lee Chong Wei of Malaysia!",
+                    images: ["https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg"],
+                    owner: {
+                        avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", 
+                        isOnline: true, 
+                    },
+                    createdAt: "2 days ago",
+                }, {
+                    id: "p-00001",
+                    title: "Hello world from Lee Chong Wei of Malaysia!",
+                    images: ["https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg"],
+                    owner: {
+                        avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", 
+                        isOnline: true, 
+                    },
+                    createdAt: "2 days ago",
+                }, {
+                    id: "p-00001",
+                    title: "Hello world from Lee Chong Wei of Malaysia!",
+                    images: ["https://didongviet.vn/dchannel/wp-content/uploads/2022/12/story-facebook-didongviet@2x.jpg"],
+                    owner: {
+                        avatar: "https://res.cloudinary.com/thienan-cloud/image/upload/v1727977438/pciqvmmvpszmmro1gzow.jpg", 
+                        isOnline: true, 
+                    },
+                    createdAt: "2 days ago",
+                }]
             }])
         }
 
@@ -116,16 +176,20 @@ function ProfilePosts() {
                                 <TbFilterSearch />
                                 <Text fontSize={14} fontWeight={"semibold"} mx={1}>Filters</Text>
                             </Button>
-                            <Button>
+                            {currentUser?.slug === userSlug
+                            && <Button>
                                 <IoSettings />
                                 <Text fontSize={14} fontWeight={"semibold"} mx={1}>Manage posts</Text>
                             </Button>
+                            }
+                            
                         </Flex>
                     </Flex>
 
                     <Divider my={2}/>
 
-                    <Flex className="view-mode-controller" w={"full"}>
+                    {currentUser?.slug === userSlug
+                    && <Flex className="view-mode-controller" w={"full"}>
                         <Button flex={1} bg={"none"} borderBottom={viewMode === "list" ? "2px solid blue" : "none"}
                             onClick={() => handleToggleViewMode()} _hover={{border: "none", backgroundColor: "#242424"}}
                         >
@@ -143,18 +207,40 @@ function ProfilePosts() {
                             </Text>
                         </Button>
                     </Flex>
+                    }
 
                 </Flex>
 
-                <Flex className="post-list" flexDirection={"column"} gap={1}> 
+                {viewMode === "list"
+                ? <Flex className="post-list" flexDirection={"column"} gap={1}> 
                     {posts.length > 0
                         && posts.map((post, id) => {
-                            if(viewMode === "list") {
-                                return <PostInList key={`post-homepage-${id}`} _post={post}>
+                            return <PostInList key={`post-homepage-${id}`} _post={post}>
                                 </PostInList>
                             }
-                        })}
+                        )}
                 </Flex>
+                :  <Flex className="post-grid" flexDirection={"column"} gap={2}>
+                    {gridPosts.length
+                    && gridPosts.map((post, id) => {
+                        return <Flex key={`post-timeline-homepage-${id}`} flexDirection={"column"}
+                            w={"full"} bg={"#242424"} borderRadius={"lg"} p={2} gap={3}
+                        >
+                            <Text textAlign={"start"} fontSize={20} fontWeight={"bold"}>{post.timeline}</Text>
+                            <Grid templateColumns={"repeat(3, 1fr)"} gap={2}>
+                                {post?.posts?.length > 0 
+                                && post?.posts?.map((_post, id) => {
+                                    return <PostInGrid key={`post-homepage-${id}`} _post={_post}/>
+                                })}
+                                
+                            </Grid>
+                        </Flex>
+                    })
+                    }
+                    
+                </Flex>
+                }
+                
             </Flex>
         </Flex>
     );
