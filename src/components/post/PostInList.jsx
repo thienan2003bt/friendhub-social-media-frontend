@@ -2,39 +2,27 @@ import { Avatar, AvatarBadge, Button, Divider, Flex, Image, Text } from "@chakra
 import { useEffect, useState } from "react";
 import { BiSolidHide } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
-import { FaRegComment } from "react-icons/fa";
-import { FaRegShareFromSquare } from "react-icons/fa6";
 import { MdOutlinePublic } from "react-icons/md";
-import { SlLike } from "react-icons/sl";
 import { Link } from "react-router-dom";
-
 import reactionLike from "../../assets/post_reactions/emojis/like.png"
 import reactionLove from "../../assets/post_reactions/emojis/love.png"
 import reactionHaha from "../../assets/post_reactions/emojis/haha.png"
 import reactionSad from "../../assets/post_reactions/emojis/sad.png"
 import reactionAngry from "../../assets/post_reactions/emojis/Angry.png"
 import reactionWow from "../../assets/post_reactions/emojis/wow.png"
+import { SlLike } from "react-icons/sl";
+import { FaRegComment } from "react-icons/fa";
+import { FaRegShareFromSquare } from "react-icons/fa6";
 
-
-function HomePost({ _post }) {
-    const [post, setPost] = useState({});
+function Post({ _post }) {
+    const [post, setPost] = useState();
     const [displayedImages, setDisplayedImages] = useState([]);
     const [imageComponent, setImageComponent] = useState({});
 
-    const handleSettingPost = () => {
-
-    }
-
-    const handleHidePost = () => {
-
-    }
-
-
-    const handleLike = () => {
-
-    }
-
-
+    useEffect(() => {
+        setPost(_post);
+        setDisplayedImages(_post?.images ?? []);
+    }, [_post])
 
     useEffect(() => {
         let renderedImage = <></>;
@@ -49,15 +37,23 @@ function HomePost({ _post }) {
     }, [displayedImages])
 
 
-    useEffect(() => {
-        setPost(_post);
-        setDisplayedImages(_post?.images ?? []);
-    }, [_post])
 
+    const handleSettingPost = () => {
+
+    }
+
+    const handleHidePost = () => {
+
+    }
+
+
+    const handleLike = () => {
+
+    }
     return (
-        <Flex marginY={4} p={2} flexDirection={"column"} w={"full"} bg={"gray.dark"} border={"xl"} gap={3}>
-            <Flex className="post-toolbar" justifyContent={"center"} gap={1} >
-                <Avatar ml={2} flex={2} src={post?.owner?.avatar} width={"36px"} height={"36px"} border={"3px solid blue"} borderRadius={"100%"}>
+        <Flex marginY={2} p={2} flexDirection={"column"} w={"full"} bg={"gray.dark"} border={"xl"} gap={3}>
+            <Flex className="post-toolbar" justifyContent={"center"} gap={1} minH={"40px"}>
+                <Avatar ml={2} flex={3} src={post?.owner?.avatar} width={"36px"} height={"36px"} border={"3px solid blue"} borderRadius={"100%"}>
                     {post?.owner?.isOnline === true 
                         && <AvatarBadge boxSize={"1em"} bg={"green.500"} />
                     }
@@ -100,12 +96,12 @@ function HomePost({ _post }) {
                     <Image src={reactionWow} w={"28px"} cursor={"pointer"}/>
                     <Image src={reactionSad} w={"28px"} cursor={"pointer"}/>
                     <Image src={reactionAngry} w={"28px"} cursor={"pointer"}/>
-                    <Text pl={2}>{post.reactions?.total}</Text>
+                    <Text pl={2}>{post?.reactions?.total}</Text>
                 </Flex>
 
                 <Flex gap={2}>
-                    <Text>{post.comments} Comments</Text>
-                    <Text>{post.shares} Shares</Text>
+                    <Text>{post?.comments} Comments</Text>
+                    <Text>{post?.shares} Shares</Text>
                 </Flex>
             </Flex>
 
@@ -131,4 +127,4 @@ function HomePost({ _post }) {
     );
 }
 
-export default HomePost;
+export default Post;

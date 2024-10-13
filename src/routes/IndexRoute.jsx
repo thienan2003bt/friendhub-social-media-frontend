@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import HomePage from "../pages/HomePage";
 import AuthPage from "../pages/AuthPage";
 import ProfilePage from "../pages/ProfilePage";
-import ProfilePosts from "../components/common/profile/ProfilePosts/ProfilePosts";
+import ProfilePosts from "../components/profile/ProfilePosts/ProfilePosts";
 
 function IndexRoute() {
     return (
