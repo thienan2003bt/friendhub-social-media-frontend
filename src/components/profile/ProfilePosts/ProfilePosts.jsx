@@ -35,9 +35,10 @@ function ProfilePosts() {
         const newViewMode = searchParams.get("viewmode");
         if(!newViewMode) {
             setViewMode("list");
+        } else {
+            setViewMode(newViewMode);
         }
         
-        setViewMode(newViewMode);
         // if(newViewMode === "grid") {
         //     const newPosts = [];
         //     posts.forEach((post) => {
