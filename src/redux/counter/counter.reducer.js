@@ -1,4 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import { handleDecrementAsync, handleIncrementAsync } from './counter.async.thunk'
 
 export const counterSlice = createSlice({
     name: 'counter',
@@ -20,46 +21,10 @@ export const counterSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        // incrementAsync
-        builder
-            .addCase(incrementAsync.pending, (state) => {
-                console.log("Pending state: ", state);
-            })
-            .addCase(incrementAsync.fulfilled, (state, action) => {
-                state.value += action.payload
-            })
-            .addCase(incrementAsync.rejected, (state) => {
-                console.log("Rejected state: ", state);
-            });
-
-        // decrementAsync
-        builder
-            .addCase(decrementAsync.pending, (state) => {
-                console.log("Pending state: ", state);
-            })
-            .addCase(decrementAsync.fulfilled, (state, action) => {
-                state.value -= action.payload
-            })
-            .addCase(decrementAsync.rejected, (state) => {
-                console.log("Rejected state: ", state);
-            })
+        handleIncrementAsync(builder);
+        handleDecrementAsync(builder);
     }
 })
-
-export const incrementAsync = createAsyncThunk(
-    'counter/incrementAsync',
-    async (amount) => {
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-        return amount;
-    }
-)
-export const decrementAsync = createAsyncThunk(
-    'counter/decrementAsync',
-    async (amount) => {
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-        return amount;
-    }
-)
 
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount, decrementByAmount } = counterSlice.actions

@@ -1,7 +1,8 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { increment, decrement, incrementByAmount, decrementByAmount, incrementAsync, decrementAsync } from "../redux/counter/counter.reducer";
+import { increment, decrement, incrementByAmount, decrementByAmount } from "../redux/counter/counter.reducer";
+import { incrementAsync, decrementAsync } from "../redux/counter/counter.async.thunk";
 
 
 function CounterPage() {
