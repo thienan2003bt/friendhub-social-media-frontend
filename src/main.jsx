@@ -5,6 +5,10 @@ import {mode} from '@chakra-ui/theme-tools'
 import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 
+import { Provider as ReduxProvider } from 'react-redux';
+import store from './redux/store.js';
+
+
 const styles = {
     global: (props) => ({
         body: {
@@ -27,15 +31,18 @@ const colors = {
     }
 }
 
+
 const theme = extendTheme({configs, styles, colors})
 
 createRoot(document.getElementById('root')).render(
     <>
         <ChakraProvider theme={theme} margin={0}>
-            <BrowserRouter>
-                <ColorModeScript initialColorMode={theme.configs.initialColorMode}/>
-                <App />
-            </BrowserRouter>
+            <ReduxProvider store={store}>
+                <BrowserRouter>
+                    <ColorModeScript initialColorMode={theme.configs.initialColorMode}/>
+                    <App />
+                </BrowserRouter>
+            </ReduxProvider>
         </ChakraProvider>
     </>
 )

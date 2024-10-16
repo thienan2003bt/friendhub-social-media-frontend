@@ -101,7 +101,7 @@ function ProfilePage() {
                 >
                     <Flex position={"relative"} className="brief-info" w={"full"} borderBottom={"1px dotted gray"}>
                         <Avatar top={-20} left={0} position={"absolute"} src={currentUser?.avatar} w={48} h={48} overflow={"visible"}
-                            cursor={"pointer"} onClick={() => handleToggleAvatar()} _hover={{opacity: 0.6}}
+                            cursor={"pointer"} onClick={() => handleToggleAvatar()} _hover={{opacity: 0.8}}
                         >
                             <AvatarBadge as={FaCameraRetro} size={40} right={6} cursor={"pointer"} onClick={() => handleUploadAvatar()}/>
                         </Avatar>
