@@ -58,8 +58,8 @@ function Footer() {
                 { navigators.length > 0
                 && navigators.slice(0, 3).map((nav, id) => {
                     return <Text as={Link} w={"full"} textAlign={"start"} marginY={1}
-                            key={`nav-${id}`} to={`/${nav.linkURL}`}>
-                            {nav.name}
+                            key={`nav-${id}`} to={nav?.linkURL}>
+                            {nav?.name}
                         </Text>
                     })}
                 </Flex>

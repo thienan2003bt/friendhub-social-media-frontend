@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import AuthPage from "../pages/AuthPage";
 import ProfilePage from "../pages/ProfilePage";
 import ProfilePosts from "../components/profile/ProfilePosts/ProfilePosts";
+import CounterPage from "../pages/CounterPage";
 
 function IndexRoute() {
     return (
@@ -24,6 +25,8 @@ function IndexRoute() {
             </Route>
 
             <Route path="/auth" element={<AuthPage />} />
+            
+            <Route path="/counter" element={<CounterPage />} />
         </Routes>
     );
 }
