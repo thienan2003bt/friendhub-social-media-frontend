@@ -5,8 +5,12 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 import banner from '../assets/auth_banner.jpeg';
 import { FaGithub } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { loginAccess } from "../redux/access/access.async.thunk";
 
 function AuthPage() {
+    const dispatch = useDispatch();
+    
     // TODO: move it into .env file
     const APP_SERVER_URL = "http://localhost:5000";
     
@@ -39,9 +43,7 @@ function AuthPage() {
     }
 
     const handleSubmitLogin = async () => {
-        // TODO: Call API here
-        const response = "fetch data here!"
-        window.alert("Response: " + response)
+        dispatch(loginAccess(inputs?.email, inputs?.password));
     }
 
     const handleSubmitSignup = async () => {
