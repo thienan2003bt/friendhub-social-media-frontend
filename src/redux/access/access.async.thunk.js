@@ -3,10 +3,9 @@ import AccessService from "../../services/access.service";
 
 export const loginAccess = createAsyncThunk(
     'access/loginAccess',
-    async (username, password) => {
-        // TODO: Call API to login here
+    async ({email, password}) => {
         try {
-            const response = await AccessService.handleLogin(username, password);
+            const response = await AccessService.handleLogin(email, password);
             if(!response) {
                 throw new Error("No response data");
             }

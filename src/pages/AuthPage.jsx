@@ -5,10 +5,11 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 import banner from '../assets/auth_banner.jpeg';
 import { FaGithub } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginAccess } from "../redux/access/access.async.thunk";
 
 function AuthPage() {
+    const { isLoading } = useSelector((state) => state.access);
     const dispatch = useDispatch();
     
     // TODO: move it into .env file
@@ -43,7 +44,7 @@ function AuthPage() {
     }
 
     const handleSubmitLogin = async () => {
-        dispatch(loginAccess(inputs?.email, inputs?.password));
+        dispatch(loginAccess({ email: inputs?.email, password: inputs?.password }));
     }
 
     const handleSubmitSignup = async () => {
@@ -142,7 +143,10 @@ function AuthPage() {
                     </Flex>
 
                     {authState === "login"
-                    ? <Button height={"48px"} colorScheme={'blue'} variant={'solid'} onClick={() => handleSubmitLogin()}>
+                        ? <Button height={"48px"} colorScheme={'blue'} variant={'solid'}
+                            isLoading={isLoading}
+                            onClick={() => handleSubmitLogin()}
+                        >
                         <Text fontSize={20} fontWeight={"bold"}>Login</Text>
                     </Button>
                     : <Button height={"48px"} colorScheme={'blue'} variant={'solid'} onClick={() => handleSubmitSignup()}>

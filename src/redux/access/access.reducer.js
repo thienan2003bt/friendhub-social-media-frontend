@@ -12,6 +12,9 @@ const accessSlice = createSlice({
         permissions: [],
     },
     reducers: {
+        setIsLoading: (state, action) => {
+            state.isLoading = action.payload;
+        },
         setUser: (state, action) => {
             state.user = action.payload;
         },
@@ -27,6 +30,6 @@ const accessSlice = createSlice({
     }
 })
 
-export const { setUser, setAccessToken, setPermissions } = accessSlice.actions;
+export const { setIsLoading, setUser, setAccessToken, setPermissions } = accessSlice.actions;
 
 export default accessSlice.reducer;

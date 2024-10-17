@@ -1,9 +1,9 @@
 import axios from '../configs/axios.config';
 
 class AccessService {
-    static async handleLogin(username, password) {
+    static async handleLogin(email, password) {
         try {
-            const response = await axios.post(`/login`, { username, password });
+            const response = await axios.post(`api/v1//access/login`, { email, password });
             if(!response) {
                 throw new Error("No response data");
             }
