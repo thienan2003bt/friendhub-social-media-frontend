@@ -7,10 +7,12 @@ import banner from '../assets/auth_banner.jpeg';
 import { FaGithub } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAccess } from "../redux/access/access.async.thunk";
+import useShowToast from "../hooks/useShowToast";
 
 function AuthPage() {
-    const { isLoading } = useSelector((state) => state.access);
+    const { isLoading, isAuthenticated, error: accessError} = useSelector((state) => state.access);
     const dispatch = useDispatch();
+    const showToast = useShowToast();
     
     // TODO: move it into .env file
     const APP_SERVER_URL = "http://localhost:5000";
@@ -44,7 +46,14 @@ function AuthPage() {
     }
 
     const handleSubmitLogin = async () => {
-        dispatch(loginAccess({ email: inputs?.email, password: inputs?.password }));
+        try {
+            dispatch(loginAccess({ email: inputs?.email, password: inputs?.password }));
+            if(isAuthenticated === true) {
+                showToast("Login success", "You have successfully logged in", "success");
+            }
+        } catch (error) {
+            showToast("Login failed", error.message, "error");
+        }
     }
 
     const handleSubmitSignup = async () => {
@@ -60,6 +69,11 @@ function AuthPage() {
         }
     }, [searchParams, authState])
 
+    useEffect(() => {
+        if (accessError && accessError !== '') {
+            showToast("Authentication failed", accessError, "error");
+        }
+    }, [accessError, showToast])
 
     return (
         <Flex w={"99vw"} justifyContent={"stretch"} overflow={"hidden"}>
