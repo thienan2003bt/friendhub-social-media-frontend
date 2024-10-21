@@ -14,19 +14,25 @@ function IndexRoute() {
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/profile/:userSlug" element={<ProfilePage />}>
                     <Route index={true} element={<ProfilePosts />} />
-                    <Route path="/profile/:userSlug/posts" element={<ProfilePosts />} />
-                    <Route path="/profile/:userSlug/about" element={<ProfilePosts />} />
-                    <Route path="/profile/:userSlug/friends" element={<ProfilePosts />} />
-                    <Route path="/profile/:userSlug/photos" element={<ProfilePosts />} />
-                    <Route path="/profile/:userSlug/streams" element={<ProfilePosts />} />
-                    <Route path="/profile/:userSlug/videos" element={<ProfilePosts />} />
-                    <Route path="/profile/:userSlug/mores" element={<ProfilePosts />} />
+                    <Route path="posts" element={<ProfilePosts />} />
+                    <Route path="about" element={<ProfilePosts />} />
+                    <Route path="friends" element={<ProfilePosts />} />
+                    <Route path="photos" element={<ProfilePosts />} />
+                    <Route path="streams" element={<ProfilePosts />} />
+                    <Route path="videos" element={<ProfilePosts />} />
+                    <Route path="mores" element={<ProfilePosts />} />
                 </Route>
             </Route>
 
             <Route path="/auth" element={<AuthPage />} />
             
             <Route path="/counter" element={<CounterPage />} />
+
+
+
+
+            {/* Not found Page */}
+            <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
     );
 }

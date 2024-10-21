@@ -8,7 +8,7 @@ import reactionLike from "../../assets/post_reactions/emojis/like.png"
 import reactionLove from "../../assets/post_reactions/emojis/love.png"
 import reactionHaha from "../../assets/post_reactions/emojis/haha.png"
 import reactionSad from "../../assets/post_reactions/emojis/sad.png"
-import reactionAngry from "../../assets/post_reactions/emojis/Angry.png"
+import reactionAngry from "../../assets/post_reactions/emojis/angry.png"
 import reactionWow from "../../assets/post_reactions/emojis/wow.png"
 import { SlLike } from "react-icons/sl";
 import { FaRegComment } from "react-icons/fa";
